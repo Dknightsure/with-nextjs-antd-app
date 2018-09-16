@@ -11,35 +11,36 @@ if (typeof require !== 'undefined') {
   require.extensions['.less'] = (file) => {}
 }
 
-module.exports = withCss(withLess({
+module.exports = withLess({
+  cssModules: true,
   lessLoaderOptions: {
     javascriptEnabled: true,
+    
   },
-  cssModules: true,
   cssLoaderOptions: {
     importLoaders: 1,
-    localIdentName: "[path]__[name]___[local]___[hash:base64:5]",
+    localIdentName: "[name]___[local]___[hash:base64:5]",
   },
   pageExtensions: ['jsx', 'js'],
   webpack(config, { dev, isServer, defaultLoaders }){
 
-    // console.log("@@1@@", defaultLoaders.less[1].options)
-    
+    console.log("@@1@@", config)
+   /*  
     config.module.rules.push({
       test: /\.(css|less)$/,
       use: defaultLoaders.less,
       exclude: [
         /node_modules/
       ],  
-    })
+    }) */
 
-     config.module.rules.push({
+     /* config.module.rules.push({
        test: /\.(css|less)$/,
       use: defaultLoaders.less,
       exclude: [
         /src/
       ],  
-    })
+    }) */
     
     /* config.module.rules.push({
       test: /\.less$/,
@@ -63,7 +64,7 @@ module.exports = withCss(withLess({
       ],
     }) */
     
-    return commonsChunkConfig(config, /\.(less|css)$/)
-    // return config
+    // return commonsChunkConfig(config, /\.(less|css)$/)
+    return config
   }
-}))
+})

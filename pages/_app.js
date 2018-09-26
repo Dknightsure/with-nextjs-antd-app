@@ -6,6 +6,8 @@ import Layout from '../layouts/layout'
 
 import style from './common.less'
 
+import '../static/fonts/safont/iconfont.css'
+
 class GlobalApp extends App {
     static async getInitialProps({ Component, router, ctx }) {
         let pageProps = {}
